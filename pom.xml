@@ -12,7 +12,7 @@
 	<artifactId>condosdecision</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>condosDecision</name>
+	<name>condosdecision</name>
 	<description>Poc para TCC do mba aplicações blockchain</description>
 
 	<properties>
