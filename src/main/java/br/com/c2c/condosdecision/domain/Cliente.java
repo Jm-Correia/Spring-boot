@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import br.com.c2c.condosdecision.enums.TipoCliente;
 
 @Entity
@@ -35,6 +37,7 @@ public class Cliente implements Serializable {
 	
 	private String email;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos  = new ArrayList<>();
 	
