@@ -14,6 +14,7 @@ import br.com.c2c.condosdecision.domain.Cidade;
 import br.com.c2c.condosdecision.domain.Cliente;
 import br.com.c2c.condosdecision.domain.Endereco;
 import br.com.c2c.condosdecision.domain.Estado;
+import br.com.c2c.condosdecision.domain.ItemPedido;
 import br.com.c2c.condosdecision.domain.Pagamento;
 import br.com.c2c.condosdecision.domain.PagamentoComBoleto;
 import br.com.c2c.condosdecision.domain.PagamentoComCartao;
@@ -26,6 +27,7 @@ import br.com.c2c.condosdecision.repositories.CidadeRepository;
 import br.com.c2c.condosdecision.repositories.ClienteRepository;
 import br.com.c2c.condosdecision.repositories.EnderecoRepository;
 import br.com.c2c.condosdecision.repositories.EstadoRepository;
+import br.com.c2c.condosdecision.repositories.ItemPedidoRepository;
 import br.com.c2c.condosdecision.repositories.PagamentoRepository;
 import br.com.c2c.condosdecision.repositories.PedidoRepository;
 import br.com.c2c.condosdecision.repositories.ProdutoRepository;
@@ -56,6 +58,9 @@ public class CondosDecisionApplication implements CommandLineRunner {
 	
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CondosDecisionApplication.class, args);
@@ -133,6 +138,21 @@ public class CondosDecisionApplication implements CommandLineRunner {
 		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pag1, pag2));
 		clienteRepository.save(cli1);
+		
+		/**
+		 * Item Pedido
+		 */
+		
+		ItemPedido item1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
+		ItemPedido item2 = new ItemPedido(ped2, p3, 10.00, 2, 80.00);
+		
+		ped1.getItens().add(item1);
+		ped2.getItens().add(item2);
+		
+		p1.getItens().add(item1);
+		p3.getItens().add(item2);
+		
+		itemPedidoRepository.saveAll(Arrays.asList(item1,item2));
 		
 	}
 
