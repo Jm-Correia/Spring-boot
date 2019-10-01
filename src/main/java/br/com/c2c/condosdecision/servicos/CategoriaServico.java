@@ -27,4 +27,9 @@ public class CategoriaServico {
 		return repo.save(categoria);
 	}
 	
+	public Categoria alterar(Categoria categoria) {
+		buscar(categoria.getId());
+		return repo.save(categoria);
+	}
+	
 }
