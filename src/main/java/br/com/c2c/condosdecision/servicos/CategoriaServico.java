@@ -23,6 +23,7 @@ public class CategoriaServico {
 	}
 	
 	public Categoria inserir(Categoria categoria) {
+		categoria.setId(null);
 		return repo.save(categoria);
 	}
 	
