@@ -1,6 +1,9 @@
 package br.com.c2c.condosdecision.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.c2c.condosdecision.domain.Categoria;
+import br.com.c2c.condosdecision.dto.CategoriaDTO;
 import br.com.c2c.condosdecision.servicos.CategoriaServico;
 
 @RestController
@@ -56,6 +60,14 @@ public class CategoriaResource {
 	public ResponseEntity<Void> delete(@PathVariable Integer id){
 		service.delete(id);
 		return ResponseEntity.status(HttpStatus.OK).build();
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<CategoriaDTO>> buscarTodos(){
+		
+		List<CategoriaDTO> lista = service.buscarTodos().stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+		
+		return ResponseEntity.ok().body(lista);
 	}
 	
 	

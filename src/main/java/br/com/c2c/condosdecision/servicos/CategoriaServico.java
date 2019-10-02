@@ -1,5 +1,6 @@
 package br.com.c2c.condosdecision.servicos;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,10 @@ public class CategoriaServico {
 		}catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityExpection("Não é Possivel deletar uma categoria que tem produtos");
 		}
+	}
+	
+	public List<Categoria> buscarTodos(){
+		return repo.findAll();
 	}
 	
 }
