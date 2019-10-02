@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import br.com.c2c.condosdecision.exception.DataIntegrityExpection;
 import br.com.c2c.condosdecision.exception.ObjetoNotFoundExpection;
 
 @ControllerAdvice
@@ -17,6 +18,13 @@ public class ResouceExpectionHandler {
 		StandardError err = new StandardError(HttpStatus.NOT_FOUND.value(), e.getMessage(), System.currentTimeMillis());
 		
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+	}
+	
+	@ExceptionHandler(DataIntegrityExpection.class)
+	public ResponseEntity<StandardError> dataIntegrity(DataIntegrityExpection e, HttpServletRequest request){
+		StandardError err = new StandardError(HttpStatus.BAD_REQUEST.value(), e.getMessage(), System.currentTimeMillis());
+		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 	}
 	
 }
