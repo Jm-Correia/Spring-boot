@@ -74,6 +74,19 @@ public class CondosDecisionApplication implements CommandLineRunner {
 		
 		Categoria cat1 = new Categoria(null, "Informatica");
 		Categoria cat2 = new Categoria(null, "Escritorio");
+		Categoria cat3 = new Categoria(null, "Escritorio");
+		Categoria cat4 = new Categoria(null, "PC");
+		Categoria cat5 = new Categoria(null, "CAMA");
+		Categoria cat6 = new Categoria(null, "Mesa");
+		Categoria cat7 = new Categoria(null, "Banho");
+		Categoria cat8 = new Categoria(null, "Banheiro");
+		Categoria cat9 = new Categoria(null, "Detergente");
+		Categoria cat10 = new Categoria(null, "Cereal");
+		Categoria cat11 = new Categoria(null, "Eletronicos");
+		Categoria cat12 = new Categoria(null, "Pets");
+		Categoria cat13 = new Categoria(null, "Carro");
+		Categoria cat14 = new Categoria(null, "Congelados");
+		
 		
 		Produto p1 = new Produto(null, "Computador", 2000.00);
 		Produto p2 = new Produto(null, "Impressora", 800.00);
@@ -86,7 +99,7 @@ public class CondosDecisionApplication implements CommandLineRunner {
 		p2.getCategorias().addAll(Arrays.asList(cat1,cat2));
 		p3.getCategorias().addAll(Arrays.asList(cat1,cat2));
 				
-		categoriaRepository.saveAll(Arrays.asList(cat1,cat2));
+		categoriaRepository.saveAll(Arrays.asList(cat1,cat2, cat3, cat4, cat5, cat6, cat7, cat8, cat9, cat10, cat11, cat12, cat13, cat14));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
 		
 		/**
