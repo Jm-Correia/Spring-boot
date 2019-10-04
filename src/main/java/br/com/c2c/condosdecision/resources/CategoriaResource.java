@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -41,9 +43,9 @@ public class CategoriaResource {
 	
 	
 	@PostMapping
-	public ResponseEntity<Void> inserir(@RequestBody Categoria obj) {
+	public ResponseEntity<Void> inserir(@Valid @RequestBody CategoriaDTO obj) {
 	
-		obj = service.inserir(obj);
+		obj = new CategoriaDTO(service.inserir(obj.fromDTO()));
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
