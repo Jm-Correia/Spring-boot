@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.c2c.condosdecision.domain.Cliente;
-import br.com.c2c.condosdecision.domain.Cliente;
 import br.com.c2c.condosdecision.exception.DataIntegrityExpection;
 import br.com.c2c.condosdecision.exception.ObjetoNotFoundExpection;
 import br.com.c2c.condosdecision.repositories.ClienteRepository;
@@ -48,12 +47,14 @@ public class ClienteServico {
 		return repo.save(cliente);
 	}
 	
+
 	public void delete(Integer id) {
 		buscar(id);
 		try {
 			repo.deleteById(id);
+			
 		}catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityExpection("Não é Possivel deletar um Cliente!");
+			throw new DataIntegrityExpection("Não é Possivel deletar um Cliente que pedido realizado!");
 		}
 	}
 	
