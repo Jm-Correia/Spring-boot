@@ -17,24 +17,24 @@ public class ClienteDTO {
 
 	private Integer id;
 	
-	@NotEmpty
+	@NotEmpty(message = "Preenchimento obrigatório")
 	@Size(min = 5, max = 20, message = "O nome deve conter entre 5 e 20 caracteres")
 	private String nome;
 	
-	@NotEmpty
+	//@NotEmpty(message = "Preenchimento obrigatório")
 	@Size(min = 11, max = 14, message = "O cpfOuCnpj deve ter 13 ou 14 caracteres")
 	private String cpfOuCnpj;
 
-	@NotEmpty
-	@Email
+	@NotEmpty(message = "Preenchimento obrigatório")
+	@Email(message = "Email Invalidos")
 	private String email;
 	
 	private TipoCliente tipoCliente;
 	
-	@NotEmpty
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private List<Endereco> enderecos = new ArrayList<>();
 	
-	@NotEmpty
+	@NotEmpty(message = "Preenchimento obrigatório")
 	@Size(min = 2, max = 3, message = "É necessario ter entre 2 a 3 telefones")
 	private Set<String> telefones = new HashSet<>();
 
@@ -51,8 +51,8 @@ public class ClienteDTO {
 		this.enderecos = enderecos;
 	}
 	
-	public Cliente getCliente() {
-		Cliente c = new Cliente(null, this.nome, this.cpfOuCNPJ, this.tipoCliente, this.email);
+	public Cliente retCliente() {
+		Cliente c = new Cliente(null, nome, cpfOuCnpj, tipoCliente, email);
 		for(Endereco end: this.enderecos) {
 			end.setCliente(c);
 		}
@@ -68,6 +68,8 @@ public class ClienteDTO {
 		this.cpfOuCnpj = cliente.getCpfOuCnpj();
 		this.email = cliente.getEmail(); 
 		this.tipoCliente = cliente.getTipoCliente();
+		this.telefones = cliente.getTelefones();
+		this.enderecos = cliente.getEnderecos();
 	}
 
 	public String getNome() {
@@ -78,11 +80,11 @@ public class ClienteDTO {
 		this.nome = nome;
 	}
 
-	public String getCpfOuCNPJ() {
+	public String getcpfOuCnpj() {
 		return cpfOuCnpj;
 	}
 
-	public void setCpfOuCNPJ(String cpfOuCnpj) {
+	public void setcpfOuCnpj(String cpfOuCnpj) {
 		this.cpfOuCnpj = cpfOuCnpj;
 	}
 

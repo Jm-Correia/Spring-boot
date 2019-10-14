@@ -42,7 +42,7 @@ public class Cliente implements Serializable {
 	
 	private String email;
 	
-	@JsonManagedReference
+	
 	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos  = new ArrayList<>();
 	

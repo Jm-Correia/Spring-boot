@@ -52,8 +52,8 @@ public class CategoriaServico {
 	}
 	
 	public Page<Categoria> buscarPagina(Integer page, Integer linhasPorPagina, String orderBy, String direction){
-		PageRequest pagaRequest = PageRequest.of(page, linhasPorPagina, Direction.valueOf(direction), orderBy);
-		return repo.findAll(pagaRequest);
+		PageRequest pageRequest = PageRequest.of(page, linhasPorPagina, Direction.valueOf(direction), orderBy);
+		return repo.findAll(pageRequest);
 	}
 	
 }
